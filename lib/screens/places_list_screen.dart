@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:great_places_app/providers/great_places_provider.dart';
 import 'package:great_places_app/screens/add_pace_screen.dart';
 import 'package:provider/provider.dart';
