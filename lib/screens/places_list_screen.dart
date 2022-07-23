@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:great_places_app/providers/great_places_provider.dart';
 import 'package:great_places_app/screens/add_pace_screen.dart';
+import 'package:provider/provider.dart';
 
 class PlacesListScreen extends StatelessWidget {
   const PlacesListScreen({Key? key}) : super(key: key);
@@ -19,8 +21,22 @@ class PlacesListScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: const Center(
-        child: CircularProgressIndicator(),
+      body: Center(
+        child: Consumer<GreatPlacesProvider>(
+          child: const Text('Got no places yet, start adding some!'),
+          builder: (ctx, greatPlaces, child) => greatPlaces.places.isEmpty
+              ? child!
+              : ListView.builder(
+                  itemCount: greatPlaces.places.length,
+                  itemBuilder: (ctx, i) => ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: FileImage(greatPlaces.places[i].image),
+                    ),
+                    title: Text(greatPlaces.places[i].title),
+                    onTap: () {},
+                  ),
+                ),
+        ),
       ),
     );
   }
